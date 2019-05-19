@@ -26,11 +26,6 @@ async def test(request):
     return await response.file(os.path.abspath('test/script.js'))
 
 
-@app.route("/5.jpg")
-async def test(request):
-    return await response.file(os.path.abspath('test/5.jpg'))
-
-
 @app.route("/favicon.png")
 async def test(request):
     return await response.file(os.path.abspath('test/favicon.png'))
