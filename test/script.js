@@ -1,4 +1,4 @@
-function load_pic(from_num, to_num) {
+function load_pic(from_num, to_num) { //load pictures
     for (let i = from_num; i < to_num; i++) {
         if (!($('#frame-' + i).attr('src'))){
             let image = $("<img />").attr('id', 'frame-' + i);
@@ -11,7 +11,7 @@ function load_pic(from_num, to_num) {
 }
 
 
-function unload_pic(from_num, to_num) {
+function unload_pic(from_num, to_num) {//unload pictures
     for (let i = from_num; i < to_num; i++) {
         let image = $('#frame-' + i);
         if ((image.attr('src'))){
