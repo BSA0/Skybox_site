@@ -31,7 +31,7 @@ function unload_all_pic() {
 
 
 function delete_all_empty() {
-    $('.material-placeholder').each(function () {
+    $('.material-placeholder ').each(function () {
         $('div').each(function() {
             let $this = $(this);
             if($this.html().replace(/\s|&nbsp;/g, '').length === 0)
@@ -89,6 +89,14 @@ function previous(){
 }
 
 
+function very_importatnt_func(){
+    window.history.pushState("data","Title", window.location.pathname + window.location.search);
+    let arr = window.location.search.split('&');
+    for (let i in arr) {
+        console.log(arr[i].split('='))}
+}
+
+
 $(document).ready(function () {
     M.AutoInit(document.body);
     let cookie = Cookies.noConflict();
@@ -113,6 +121,16 @@ $(document).ready(function () {
     mobile.val(num);
     desktop.val(num);
     frame.val(num);
+
+    $('body').keydown(function(eventObject){
+        switch (eventObject.which) {
+            case 65:
+            case 37: $('#previous').trigger("click"); break;
+            case 68:
+            case 39: $('#next').trigger("click"); break;
+
+        }
+    });
 
 
     $('#next').click(function() {
