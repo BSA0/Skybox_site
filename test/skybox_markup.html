@@ -1,0 +1,140 @@
+<head>
+	<title>SkyBox</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <meta charset="utf-8">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper light-blue darken-2">
+            <a href="#" class="brand-logo center">The Skybox</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#">Read comic</a></li>
+                <li><a href="#">About</a></li>
+
+            </ul>
+            <ul id="nav-mobile" class="left hide-on-med-and-down right">
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Characters</a></li>
+                <li><a href="#" onclick="M.toast({html: 'Hug!'})">Hug Lynx</a></li>
+            </ul>
+        </div>
+
+        <ul class="sidenav" id="mobile-demo">
+                <li><a href="#">Read comic</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Characters</a></li>
+                <li><a href="#" onclick="M.toast({html: 'Hug!'})">Hug Lynx</a></li>
+            </ul>
+    </nav>
+    
+          
+    <main class="light-blue valign-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m10 l8 offset-l2 offset-m1">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title  text-darken-4 center">Arc 5 - Energy: Page 22 - frame 21/21</span>
+                        
+                            <div class="card-image">
+                                <div class="">
+                                    <input id="num-frame" class="hide" value="0">
+                                    <div id="img-holder" class=""></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="card-action">
+                                <a class="btn-floating halfway-fab waves-effect waves-light light-blue darken-2 activator"><i class="material-icons">settings</i></a>
+
+                            <div class="row no-margin hide-on-med-and-up">
+                                <div class="input-field col s6 offset-s3 no-top-margin">
+                                        <input value="0" id="num-frame-mobile" type="number" class="center-align">
+                                </div>
+                            </div>
+                            <div class="row special-margin">
+                                    <div class="col s3 m2">
+                                        <a id="first" class="light-blue waves-effect waves-light btn"><i class="material-icons">first_page</i></a>
+                                    </div>
+                                    <div class="col s3 m2">
+                                        <a id="previous" class="light-blue waves-effect waves-light btn"><i class="material-icons">chevron_left</i></a>
+                                    </div>  
+
+                                    <div class="input-field col m4 hide-on-small-only no-top-margin">
+                                        <input value="0" id="num-frame-desktop" type="number" class="center-align">
+                                    </div>
+
+                                    <div class="col s3 m2">
+                                        <a id="next" class="light-blue waves-effect waves-light btn"><i class="material-icons">chevron_right</i></a>
+                                    </div>
+                                    <div class="col s3 m2">
+                                        <a id="last" class="light-blue waves-effect waves-light btn"><i class="material-icons">last_page</i></a>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Preferences<i class="material-icons right">close</i></span>
+                            <p>Here is some more information about this</p>
+                            <form action="#">
+                                <label>
+                                    <input id="cookie-allow" type="checkbox" class="checkbox-blue" />
+                                    <span>Save my place on exit</span>
+                                </label>
+                            </form>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </main>
+
+    </footer>
+    <footer class="page-footer light-blue darken-1">
+            <div class="container">
+              <div class="row">
+                <div class="col m6 s12">
+                  <h5 class="white-text">About</h5>
+                  <p class="grey-text text-lighten-4">The Skybox is a webcomic more text here maybe maybe net i dunno</p>
+                </div>
+                <div class="col m4 offset-m2 s6">
+                  <h5 class="white-text">Links</h5>
+                  <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">LynxGriffin's Tumblr</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Skybox Patreon</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Official discord server</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Unfficial discord server</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col m6 s12">
+                            © 2013-2019 "The Skybox" comic by LynxGriffin
+                        </div>
+                        <div class="col m4 offset-m2 s6">
+                            <a class="grey-text text-lighten-4" href="http://skyboxcomic.com/">Original site</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+</body>
+
