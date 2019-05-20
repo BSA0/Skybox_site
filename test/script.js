@@ -90,8 +90,10 @@ function change_page_in_url(num) {
     let arr = window.location.search.slice(1).split('&');
     let parameters = {};
 
-    for (let i in arr) {
-        parameters[arr[i].split('=')[0]] = arr[i].split('=')[1];
+    if (window.location.search !== ''){
+        for (let i in arr) {
+            parameters[arr[i].split('=')[0]] = arr[i].split('=')[1];
+        }
     }
 
     parameters['page'] = num;
