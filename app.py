@@ -84,6 +84,10 @@ async def get_frame(request, num):
     path = os.path.abspath(frames_path+'{}.jpg'.format(str(num)))
     return await response.file(path)
 
+@app.route("/frame_info")
+async def reader_page(request):
+    #todo
+    return response.json()
 
 def start():
     app.run(host="0.0.0.0")
