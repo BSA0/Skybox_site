@@ -1,10 +1,53 @@
 import os
+import pickle
 from sanic import Sanic
 from sanic import response
 
 app = Sanic()
 frames_path = 'frames/'
+database_file = 'database.txt'
 count = len(os.listdir(os.path.abspath(frames_path)))
+
+data = None
+arcs_names = None
+
+
+def get_database(force=False):
+    global data, arcs_names
+    
+    if (data is None) or (arcs_names is None) or force:
+        with open(os.path.abspath(database_file), 'rb') as f:
+            file_arc_names, file_data = pickle.load(f)
+
+        data, arcs_names = file_data, file_arc_names
+
+    return arcs_names, data
+
+
+def refresh_count(force=False):
+    pass #todo
+
+
+def get_page_from_frame(dt, current_frame):
+    for i, fr in enumerate([x[0] for x in list(dt.values())]):
+        if current_frame+1 <= fr:
+            return i
+
+
+def get_title(frame_num):
+    arcs, dt = get_database()
+    page = get_page_from_frame(dt, frame_num)
+    item = list(dt.items())[page]
+
+    s = "Arc {} - {}: Page {} - frame {}/{}".format(
+                arcs_names.index(item[0][0]),
+                item[0][0],
+                item[0][1],
+                item[1][1] - (item[1][0] - frame_num) + 1,
+                item[1][1],
+            )
+
+    return s
 
 
 @app.route("/")
