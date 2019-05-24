@@ -169,7 +169,8 @@ $(document).ready(function () {
     let cookieAllow = $('#cookie-allow');
     let frame = $('#num-frame');
 
-    var end_frame = get_last();
+    let end_frame = get_last();
+    console.log('Last frame is ' + end_frame);
 
     // Cut url for parameters
     let arr = window.location.search.slice(1).split('&');//getting attributes from url
