@@ -86,12 +86,10 @@ function get_place() {
 }
 
 function get_last() {
-    let r = 0;
-    jQuery.get('/frame_info', function(data){
-        r = data['end'];
-        console.log('Last frame is ' + r);
+    let r = jQuery.get('/frame_info', function(data){
+        return data['end'];
     });
-    return r
+    return (r.responseJSON['end']) ? r.responseJSON['end'] : 0;
 }
 
 
