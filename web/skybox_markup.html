@@ -24,7 +24,7 @@
                 <li><a href="#">About</a></li>
             </ul>
             
-            <a href="#" class="dropdown-trigger right" style="padding-right: 18; padding-left: 18; " data-target="dropdown1">EN<i class="material-icons right">arrow_drop_down</i></a></a>
+            <a href="#" class="dropdown-trigger right" style="padding-right: 18; padding-left: 18; min-width: 100;" data-target="dropdown1">EN<i class="material-icons right">arrow_drop_down</i></a></a>
 
             <ul id="nav-mobile" class="left hide-on-med-and-down right">
                 <li><a href="#">FAQ</a></li>
@@ -56,10 +56,26 @@
                             <span id="title" class="card-title  text-darken-4 center">Arc 5 - Energy: Page 22 - frame 21/21</span>
                         
                             <div class="card-image">
-                                <div class="">
-                                    <input id="num-frame" class="hide">
-                                    <input id="last-frame" class="hide">
+                                <input id="num-frame" class="hide">
+                                <input id="last-frame" class="hide">
+
+                                <div class="img-placeholder-box">
+                                    <div class="preloader-wrapper big active loader no-autoinit">
+                                        <div class="spinner-layer spinner-blue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div id="img-holder" class=""></div>
+                                    
                                 </div>
                             </div>
                             
@@ -69,7 +85,7 @@
 
                             <div class="row no-margin hide-on-med-and-up">
                                 <div class="input-field col s6 offset-s3 no-top-margin">
-                                        <input value="0" id="num-frame-mobile" type="number" class="center-align">
+                                     <input value="0" id="num-frame-mobile" type="number" class="center-align">
                                 </div>
                             </div>
                             <div class="row special-margin">
