@@ -86,8 +86,10 @@ function get_place() {
 }
 
 function get_last() {
-    let r = jQuery.get('/frame_info');
-    return (r.responseJSON['end']) ? r.responseJSON['end'] : 0;
+    $.get('/frame_info', function (data) {
+        $('#last-frame').text(data['end'])
+    });
+
 }
 
 
