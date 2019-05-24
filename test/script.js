@@ -89,6 +89,7 @@ function get_last() {
     let r = 0;
     jQuery.get('/frame_info', function(data){
         r = data['end'];
+        console.log('Last frame is ' + r);
     });
     return r
 }
