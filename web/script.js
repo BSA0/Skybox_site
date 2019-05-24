@@ -64,7 +64,7 @@ function load_place(){//load place from cookies or set it to 0
     }
 
     $('#num-frame-mobile').val(num);
-    $('#num-frame-desktop').val(num)
+    $('#num-frame-desktop').val(num);
     $('#num-frame').val(num);
 
     console.log('Place loaded!');
@@ -79,14 +79,28 @@ function save_place(num) {
     }
 }
 
-// working with page
+// working with frame
 
 function get_place() {
     return Number($('#num-frame').val());
 }
 
+function set_last() {
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: '/frame_info',
+        success: function(data) {
+            $('#last-frame').val(data['end'] - 1)
+        }
+    });
+}
+function get_last() {
+    return Number($('#last-frame').val());
+}
 
-function change_page_in_url(num) {
+
+function change_frame_in_url(num) {
     let arr = window.location.search.slice(1).split('&');
     let parameters = {};
 
@@ -96,7 +110,7 @@ function change_page_in_url(num) {
         }
     }
 
-    parameters['page'] = num;
+    parameters['frame'] = num;
     let search = [];
 
     for (let i in parameters){
@@ -110,6 +124,30 @@ function change_page_in_url(num) {
 function change_place(num) {
     let frame = $('#num-frame');
     let value = Number(frame.val());
+
+    console.log(num);
+
+    if (num >= get_last()){
+        num = get_last();
+        $('#last').attr('class', 'disabled light-blue waves-effect waves-light btn');
+        $('#next').attr('class', 'disabled light-blue waves-effect waves-light btn');
+        $('#first').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#previous').attr('class', 'light-blue waves-effect waves-light btn');
+        console.log('Last frame');
+    } else if (num <= 0){
+        num = 0;
+        $('#first').attr('class', 'disabled light-blue waves-effect waves-light btn');
+        $('#previous').attr('class', 'disabled light-blue waves-effect waves-light btn');
+        $('#last').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#next').attr('class', 'light-blue waves-effect waves-light btn');
+        console.log('First frame');
+    } else {
+        $('#last').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#next').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#first').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#previous').attr('class', 'light-blue waves-effect waves-light btn');
+        console.log('Same frame')
+    }
 
     //unload not used pictures
     if (Math.abs(num - value) === 1){
@@ -131,7 +169,11 @@ function change_place(num) {
     $('#num-frame-desktop').val(num);
     frame.val(num);
     save_place(num);
-    change_page_in_url(num);
+    change_frame_in_url(num);
+
+    jQuery.get('/frame_info?frame=' + num, function(data){
+        $('#title').text(data['name']);
+    });
 
     console.log('Changed from ' + value + ' to ' + num);
 }
@@ -139,18 +181,12 @@ function change_place(num) {
 // easter egg
 
 function very_importatnt_func(){
-    //window.history.pushState("data","Title", window.location.pathname + window.location.search); // change url
-    let arr = window.location.search.slice(1).split('&');//getting attributes from url
-    let parameters = {};
+    /*var mc = new Hammer($('body')[0]);
 
-    for (let i in arr) {
-        parameters[arr[i].split('=')[0]] = arr[i].split('=')[1];
-    }
-    console.log(parameters);
-
-    if (parameters['page']){
-        change_place(Number(parameters['page']));
-    }
+// listen to events...
+    mc.on("panleft panright tap press", function(ev) {
+        console.log(ev.type +" gesture detected.");
+    });*/
 }
 
 // main func
@@ -168,6 +204,7 @@ $(document).ready(function () {
     let cookieAllow = $('#cookie-allow');
     let frame = $('#num-frame');
 
+    set_last();
 
     // Cut url for parameters
     let arr = window.location.search.slice(1).split('&');//getting attributes from url
@@ -177,8 +214,8 @@ $(document).ready(function () {
         parameters[arr[i].split('=')[0]] = arr[i].split('=')[1];
     }
 
-    if (parameters['page'] && (Number.isInteger(+parameters['page']))){ // If had page parameter and it's integer
-        change_place(Number(parameters['page']));
+    if (parameters['frame'] && (Number.isInteger(+parameters['frame']))){ // If had frame parameter and it's integer
+        change_place(Number(parameters['frame']));
     } else {
         change_place(load_place());
     }
@@ -205,6 +242,17 @@ $(document).ready(function () {
 
     $('#previous').click(function() {
         change_place(get_place() - 1);
+        return false;
+    });
+
+    $('#first').click(function() {
+        change_place(0);
+        return false;
+    });
+
+    $('#last').click(function() {
+        set_last();
+        change_place(get_last());
         return false;
     });
 

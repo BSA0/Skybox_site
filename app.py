@@ -2,10 +2,14 @@ import os
 import pickle
 from sanic import Sanic
 from sanic import response
+import ssl
+
+context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
+context.load_cert_chain("certificate.crt", keyfile="private.key")
 
 app = Sanic()
-frames_path = '/home/artem30801/Skybox_discord_bot/frames/'
-database_file = '/home/artem30801/Skybox_discord_bot/database.txt'
+frames_path = 'frames/'
+database_file = 'database.txt'
 count = len(os.listdir(os.path.abspath(frames_path)))
 
 data = None
@@ -25,7 +29,8 @@ def get_database(force=False):
 
 
 def refresh_count(force=False):
-    pass #todo
+    global count
+    count = len(os.listdir(os.path.abspath(frames_path)))
 
 
 def get_page_from_frame(dt, current_frame):
@@ -84,10 +89,15 @@ async def get_frame(request, num):
     path = os.path.abspath(frames_path+'{}.jpg'.format(str(num)))
     return await response.file(path)
 
+
 @app.route("/frame_info")
 async def reader_page(request):
-    #todo
-    return response.json()
+    if request.raw_args.get('frame', None) is not None:
+        return response.json({'frame': request.raw_args['frame'], 'name': get_title(int(request.raw_args['frame']))})
+    return response.json({'start': 0, 'end': count})
+
 
 def start():
-    app.run(host="0.0.0.0")
+    web_ip = '0.0.0.0'
+    local_ip = 'localhost'
+    app.run(host=web_ip, port=8443, ssl=context)
