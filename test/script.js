@@ -133,7 +133,11 @@ function change_place(num) {
     save_place(num);
     change_frame_in_url(num);
 
-    $('#title').text('');
+    jQuery.get('/frame_info?frame=' + num, function(data){
+        console.log('/frame_info?frame=' + num);
+        console.log(data);
+        $('#title').text(data['name']);
+    });
 
     console.log('Changed from ' + value + ' to ' + num);
 }
@@ -141,8 +145,6 @@ function change_place(num) {
 // easter egg
 
 function very_importatnt_func(){
-    var xmlHttp = new XMLHttpRequest();
-
     /*var mc = new Hammer($('body')[0]);
 
 // listen to events...

@@ -4,8 +4,8 @@ from sanic import Sanic
 from sanic import response
 
 app = Sanic()
-frames_path = '/home/artem30801/Skybox_discord_bot/frames/'
-database_file = '/home/artem30801/Skybox_discord_bot/database.txt'
+frames_path = 'frames/'
+database_file = 'database.txt'
 count = len(os.listdir(os.path.abspath(frames_path)))
 
 data = None
