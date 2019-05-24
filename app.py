@@ -25,7 +25,8 @@ def get_database(force=False):
 
 
 def refresh_count(force=False):
-    pass #todo
+    global count
+    count = len(os.listdir(os.path.abspath(frames_path)))
 
 
 def get_page_from_frame(dt, current_frame):
@@ -84,10 +85,15 @@ async def get_frame(request, num):
     path = os.path.abspath(frames_path+'{}.jpg'.format(str(num)))
     return await response.file(path)
 
+
 @app.route("/frame_info")
 async def reader_page(request):
-    #todo
-    return response.json()
+    if request.raw_args.get('frame', None) is not None:
+        return response.json({'frame': request.raw_args['frame'], 'name': get_title(int(request.raw_args['frame']))})
+    return response.json({'start': 0, 'end': count})
+
 
 def start():
-    app.run(host="0.0.0.0")
+    web_ip = '0.0.0.0'
+    local_ip = 'localhost'
+    app.run(host=local_ip)
