@@ -2,6 +2,10 @@ import os
 import pickle
 from sanic import Sanic
 from sanic import response
+import ssl
+
+context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
+context.load_cert_chain("certificate.crt", keyfile="private.key")
 
 app = Sanic()
 frames_path = 'frames/'
@@ -96,4 +100,4 @@ async def reader_page(request):
 def start():
     web_ip = '0.0.0.0'
     local_ip = 'localhost'
-    app.run(host=local_ip)
+    app.run(host=web_ip, port=8443, ssl=context)
