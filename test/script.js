@@ -89,7 +89,7 @@ function get_last() {
     $.get('/frame_info', function (data) {
         $('#last-frame').val(data['end'])
     });
-    return $('#last-frame').val(data['end']);
+    return $('#last-frame').val();
 }
 
 
