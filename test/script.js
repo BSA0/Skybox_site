@@ -85,6 +85,12 @@ function get_place() {
     return Number($('#num-frame').val());
 }
 
+function get_last() {
+    jQuery.get('/frame_info', function(data){
+        return (data['end']) ? data['end'] : 0;
+    });
+}
+
 
 function change_frame_in_url(num) {
     let arr = window.location.search.slice(1).split('&');
@@ -162,6 +168,7 @@ $(document).ready(function () {
     let cookieAllow = $('#cookie-allow');
     let frame = $('#num-frame');
 
+    var end_frame = get_last();
 
     // Cut url for parameters
     let arr = window.location.search.slice(1).split('&');//getting attributes from url
@@ -199,6 +206,16 @@ $(document).ready(function () {
 
     $('#previous').click(function() {
         change_place(get_place() - 1);
+        return false;
+    });
+
+    $('#first').click(function() {
+        change_place(0);
+        return false;
+    });
+
+    $('#last').click(function() {
+        change_place(end_frame);
         return false;
     });
 
