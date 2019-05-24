@@ -8,8 +8,8 @@ context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain("certificate.crt", keyfile="private.key")
 
 app = Sanic()
-frames_path = 'frames/'
-database_file = 'database.txt'
+frames_path = '/home/artem30801/Skybox_discord_bot/frames/'
+database_file = '/home/artem30801/Skybox_discord_bot/database.txt'
 count = len(os.listdir(os.path.abspath(frames_path)))
 
 data = None
