@@ -173,7 +173,7 @@ $(document).ready(function () {
 
     set_last();
     let end_frame = get_last();
-    console.log('Last frame is ' + end_frame + ' or ' + get_last());
+    console.log(get_last());
 
     // Cut url for parameters
     let arr = window.location.search.slice(1).split('&');//getting attributes from url
