@@ -2,14 +2,24 @@ import os
 import pickle
 from sanic import Sanic
 from sanic import response
-import ssl
+import json
 
-context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
-context.load_cert_chain("certificate.crt", keyfile="private.key")
+if not os.path.exists(os.path.abspath('settings.json')):
+    open(os.path.abspath('settings.json'), 'w')
+    raise Exception('Missing JSON')
+
+settings = json.load(open(os.path.abspath('settings.json')))
+
+if settings['ssl']:
+    import ssl
+
+    context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
+    context.load_cert_chain("certificate.crt", keyfile="private.key")
+
 
 app = Sanic()
-frames_path = 'frames/'
-database_file = 'database.txt'
+frames_path = settings['path_to_frames']
+database_file = settings['path_to_database']
 count = len(os.listdir(os.path.abspath(frames_path)))
 
 data = None
@@ -100,4 +110,7 @@ async def reader_page(request):
 def start():
     web_ip = '0.0.0.0'
     local_ip = 'localhost'
-    app.run(host=web_ip, port=8443, ssl=context)
+    if settings['ssl']:
+        app.run(host=web_ip, port=8443, ssl=context)
+    else:
+        app.run(host=web_ip)
