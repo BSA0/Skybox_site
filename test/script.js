@@ -86,8 +86,13 @@ function get_place() {
 }
 
 function set_last() {
-    $.get('/frame_info', function (data) {
-        $('#last-frame').val(data['end'])
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: '/frame_info',
+        success: function(data) {
+            $('#last-frame').val(data['end'] - 1)
+        }
     });
 }
 function get_last() {
@@ -120,6 +125,30 @@ function change_place(num) {
     let frame = $('#num-frame');
     let value = Number(frame.val());
 
+    console.log(num);
+
+    if (num >= get_last()){
+        num = get_last();
+        $('#last').attr('class', 'disabled light-blue waves-effect waves-light btn');
+        $('#next').attr('class', 'disabled light-blue waves-effect waves-light btn');
+        $('#first').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#previous').attr('class', 'light-blue waves-effect waves-light btn');
+        console.log('Last frame');
+    } else if (num <= 0){
+        num = 0;
+        $('#first').attr('class', 'disabled light-blue waves-effect waves-light btn');
+        $('#previous').attr('class', 'disabled light-blue waves-effect waves-light btn');
+        $('#last').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#next').attr('class', 'light-blue waves-effect waves-light btn');
+        console.log('First frame');
+    } else {
+        $('#last').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#next').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#first').attr('class', 'light-blue waves-effect waves-light btn');
+        $('#previous').attr('class', 'light-blue waves-effect waves-light btn');
+        console.log('Same frame')
+    }
+
     //unload not used pictures
     if (Math.abs(num - value) === 1){
         unload_pic(num - 20, num - 6);
@@ -143,8 +172,6 @@ function change_place(num) {
     change_frame_in_url(num);
 
     jQuery.get('/frame_info?frame=' + num, function(data){
-        console.log('/frame_info?frame=' + num);
-        console.log(data);
         $('#title').text(data['name']);
     });
 
@@ -172,7 +199,6 @@ $(document).ready(function () {
     let frame = $('#num-frame');
 
     set_last();
-    console.log(get_last());
 
     // Cut url for parameters
     let arr = window.location.search.slice(1).split('&');//getting attributes from url
