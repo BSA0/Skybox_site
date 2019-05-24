@@ -172,7 +172,6 @@ $(document).ready(function () {
     let frame = $('#num-frame');
 
     set_last();
-    let end_frame = get_last();
     console.log(get_last());
 
     // Cut url for parameters
@@ -220,7 +219,8 @@ $(document).ready(function () {
     });
 
     $('#last').click(function() {
-        change_place(end_frame);
+        set_last();
+        change_place(get_last());
         return false;
     });
 
