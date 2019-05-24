@@ -85,10 +85,12 @@ function get_place() {
     return Number($('#num-frame').val());
 }
 
-function get_last() {
+function set_last() {
     $.get('/frame_info', function (data) {
         $('#last-frame').val(data['end'])
     });
+}
+function get_last() {
     return Number($('#last-frame').val());
 }
 
@@ -169,6 +171,7 @@ $(document).ready(function () {
     let cookieAllow = $('#cookie-allow');
     let frame = $('#num-frame');
 
+    set_last();
     let end_frame = get_last();
     console.log('Last frame is ' + end_frame + ' or ' + get_last());
 
