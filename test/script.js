@@ -64,7 +64,7 @@ function load_place(){//load place from cookies or set it to 0
     }
 
     $('#num-frame-mobile').val(num);
-    $('#num-frame-desktop').val(num)
+    $('#num-frame-desktop').val(num);
     $('#num-frame').val(num);
 
     console.log('Place loaded!');
@@ -79,14 +79,14 @@ function save_place(num) {
     }
 }
 
-// working with page
+// working with frame
 
 function get_place() {
     return Number($('#num-frame').val());
 }
 
 
-function change_page_in_url(num) {
+function change_frame_in_url(num) {
     let arr = window.location.search.slice(1).split('&');
     let parameters = {};
 
@@ -96,7 +96,7 @@ function change_page_in_url(num) {
         }
     }
 
-    parameters['page'] = num;
+    parameters['frame'] = num;
     let search = [];
 
     for (let i in parameters){
@@ -131,7 +131,9 @@ function change_place(num) {
     $('#num-frame-desktop').val(num);
     frame.val(num);
     save_place(num);
-    change_page_in_url(num);
+    change_frame_in_url(num);
+
+    $('#title').text('');
 
     console.log('Changed from ' + value + ' to ' + num);
 }
@@ -139,18 +141,14 @@ function change_place(num) {
 // easter egg
 
 function very_importatnt_func(){
-    //window.history.pushState("data","Title", window.location.pathname + window.location.search); // change url
-    let arr = window.location.search.slice(1).split('&');//getting attributes from url
-    let parameters = {};
+    var xmlHttp = new XMLHttpRequest();
 
-    for (let i in arr) {
-        parameters[arr[i].split('=')[0]] = arr[i].split('=')[1];
-    }
-    console.log(parameters);
+    /*var mc = new Hammer($('body')[0]);
 
-    if (parameters['page']){
-        change_place(Number(parameters['page']));
-    }
+// listen to events...
+    mc.on("panleft panright tap press", function(ev) {
+        console.log(ev.type +" gesture detected.");
+    });*/
 }
 
 // main func
@@ -171,8 +169,8 @@ $(document).ready(function () {
         parameters[arr[i].split('=')[0]] = arr[i].split('=')[1];
     }
 
-    if (parameters['page'] && (Number.isInteger(+parameters['page']))){ // If had page parameter and it's integer
-        change_place(Number(parameters['page']));
+    if (parameters['frame'] && (Number.isInteger(+parameters['frame']))){ // If had frame parameter and it's integer
+        change_place(Number(parameters['frame']));
     } else {
         change_place(load_place());
     }
