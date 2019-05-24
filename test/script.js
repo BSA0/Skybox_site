@@ -86,9 +86,11 @@ function get_place() {
 }
 
 function get_last() {
+    let r = 0;
     jQuery.get('/frame_info', function(data){
-        return (data['end']) ? data['end'] : 0;
+        r = data['end'];
     });
+    return r
 }
 
 
