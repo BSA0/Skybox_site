@@ -111,6 +111,6 @@ def start():
     web_ip = '0.0.0.0'
     local_ip = 'localhost'
     if settings['ssl']:
-        app.run(host=web_ip, port=8443, ssl=context)
+        app.run(host=web_ip, port=443, ssl=context)
     else:
         app.run(host=web_ip)
