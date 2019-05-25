@@ -72,22 +72,22 @@ async def index(request):
 
 @app.route("/read")
 async def reader_page(request):
-    return response.html(open(os.path.abspath('test/skybox_markup.html'), encoding='utf-8').read())
+    return response.html(open(os.path.abspath('web/skybox_markup.html'), encoding='utf-8').read())
 
 
 @app.route("/style.css")
 async def style(request):
-    return await response.file(os.path.abspath('test/style.css'))
+    return await response.file(os.path.abspath('web/style.css'))
 
 
 @app.route("/script.js")
 async def script(request):
-    return await response.file(os.path.abspath('test/script.js'))
+    return await response.file(os.path.abspath('web/script.js'))
 
 
 @app.route("/favicon.png")
 async def favicon(request):
-    return await response.file(os.path.abspath('test/favicon.png'))
+    return await response.file(os.path.abspath('web/favicon.png'))
 
 
 @app.route('/frames/<num:int>.jpg')

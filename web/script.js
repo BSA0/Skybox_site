@@ -193,6 +193,12 @@ function very_importatnt_func(){
 
 $(document).ready(function () {
     M.AutoInit(document.body);
+    
+    $(".dropdown-trigger").dropdown({
+        coverTrigger: false,
+        constrainWidth: false,
+     });
+
     let mobile = $('#num-frame-mobile');
     let desktop = $('#num-frame-desktop');
     let cookieAllow = $('#cookie-allow');
