@@ -170,7 +170,7 @@ function change_place(num) {
 
     change_pic(value, num);
 
-    //delete_all_empty();
+    delete_all_empty();
 
     $('#num-frame-mobile').val(num);
     $('#num-frame-desktop').val(num);
