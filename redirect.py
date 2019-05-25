@@ -24,4 +24,4 @@ async def reader_page(request):
     return response.redirect('https://skybox.nanotrasen.ru/frame_info?' + request.query_string)
 
 
-app.run(host='0.0.0.0')
+app.run(host='0.0.0.0', port=80)
