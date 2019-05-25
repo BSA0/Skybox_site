@@ -34,12 +34,19 @@ function unload_all_pic() {
 
 function delete_all_empty() {
     $('.material-placeholder ').each(function () {
+        if ($(this).children().length === 0){
+            $(this).remove()
+        }
+
+    })
+    // Old scary delete function
+    /*$('.material-placeholder ').each(function () {
         $('div').each(function() {
             let $this = $(this);
             if($this.html().replace(/\s|&nbsp;/g, '').length === 0)
                 $this.remove();
         });
-    })
+    })*/
 
 }
 
@@ -163,7 +170,7 @@ function change_place(num) {
 
     change_pic(value, num);
 
-    delete_all_empty();
+    //delete_all_empty();
 
     $('#num-frame-mobile').val(num);
     $('#num-frame-desktop').val(num);
