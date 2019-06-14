@@ -72,14 +72,12 @@ function change_pic(from_num, to_num) {
 
     if (!frame.length){
         console.log('*');
-        let frame = $("#frame");
         $('#img-holder').append(locim);
-        frame.materialbox();
+        $("#frame").materialbox();
     } else {
         console.log('**');
-        let frame = $("#frame");
         $(".material-placeholder").replaceWith(locim);
-        frame.materialbox();
+        $("#frame").materialbox();
     }
     //$('#frame-' + from_num).attr('class', 'hide materialboxed');
     //$('#frame-' + to_num).attr('class', 'materialboxed')
