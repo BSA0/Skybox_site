@@ -66,10 +66,16 @@ function delete_all_empty() {
 
 
 function change_pic(from_num, to_num) {
+    let frame = $("#frame");
     let locim = images[to_num].cloneNode(true);
     locim.id = "frame";
-    $(".material-placeholder").replaceWith(locim);
-    $("#frame").materialbox();
+
+    if (!frame.length){
+        $('#img-holder').append(locim);
+    } else {
+        $(".material-placeholder").replaceWith(locim);
+    }
+    frame.materialbox();
 
     //$('#frame-' + from_num).attr('class', 'hide materialboxed');
     //$('#frame-' + to_num).attr('class', 'materialboxed')
