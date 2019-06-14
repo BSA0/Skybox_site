@@ -71,15 +71,16 @@ function change_pic(from_num, to_num) {
     locim.id = "frame";
 
     if (!frame.length){
-            console.log('*');
+        console.log('*');
+        let frame = $("#frame");
         $('#img-holder').append(locim);
+        frame.materialbox();
     } else {
         console.log('**');
+        let frame = $("#frame");
         $(".material-placeholder").replaceWith(locim);
+        frame.materialbox();
     }
-    console.log('Trying make box');
-    frame.materialbox();
-    console.log('Check it');
     //$('#frame-' + from_num).attr('class', 'hide materialboxed');
     //$('#frame-' + to_num).attr('class', 'materialboxed')
 }
