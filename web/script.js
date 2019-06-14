@@ -71,12 +71,15 @@ function change_pic(from_num, to_num) {
     locim.id = "frame";
 
     if (!frame.length){
+            console.log('*');
         $('#img-holder').append(locim);
     } else {
+        console.log('**');
         $(".material-placeholder").replaceWith(locim);
     }
+    console.log('Trying make box');
     frame.materialbox();
-
+    console.log('Check it');
     //$('#frame-' + from_num).attr('class', 'hide materialboxed');
     //$('#frame-' + to_num).attr('class', 'materialboxed')
 }
@@ -247,7 +250,7 @@ $(document).ready(function () {
         parameters[arr[i].split('=')[0]] = arr[i].split('=')[1];
     }
 
-    if (parameters['frame'] && (Number.isInteger(+parameters['frame']))){ // If had frame parameter and it's integer
+    if (parameters['frame'] && (Number.isInteger(+parameters['frame']))){ // If we had frame parameter and it's integer
         change_place(Number(parameters['frame']));
     } else {
         change_place(load_place());
