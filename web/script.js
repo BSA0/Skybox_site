@@ -1,34 +1,48 @@
 //working with frames
+let images = {};
+
 function load_pic(from_num, to_num) { //load pictures
     for (let i = from_num; i < to_num; i++) {
-        if (!($('#frame-' + i).attr('src'))){
+        let image = new Image;
+        image.src = 'frames/'+ i +'.jpg';
+        images[i] = image;
+        console.log('loaded ' + i);
+
+        // Old save system
+        /*if (!($('#frame-' + i).attr('src'))){
             let image = $("<img />").attr('id', 'frame-' + i);
             image.attr('class', 'hide materialboxed');
             image.attr('src', 'frames/'+ i +'.jpg');
             $('#img-holder').append(image);
             console.log('loaded ' + i);
             $('#frame-' + i).materialbox();
-        }
+        }*/
     }
 }
 
 
 function unload_pic(from_num, to_num) {//unload pictures
     for (let i = from_num; i < to_num; i++) {
-        let image = $('#frame-' + i);
+        delete images[i];
+        console.log('unloaded ' + i);
+
+        // Old unload system
+        /*let image = $('#frame-' + i);
         if ((image.attr('src'))){
             image.remove();
             console.log('unloaded ' + i);
-        }
+        }*/
     }
 }
 
 
 function unload_all_pic() {
-    $('*').each(function() {
+    images = {};
+
+    /*$('*').each(function() {
         if ($(this).is('img')) {
             $(this).remove()}
-    });
+    });*/
 }
 
 
@@ -52,8 +66,13 @@ function delete_all_empty() {
 
 
 function change_pic(from_num, to_num) {
-    $('#frame-' + from_num).attr('class', 'hide materialboxed');
-    $('#frame-' + to_num).attr('class', 'materialboxed')
+    let locim = images[to_num].cloneNode(true);
+    locim.id = "frame";
+    $(".material-placeholder").replaceWith(locim);
+    $("#frame").materialbox();
+
+    //$('#frame-' + from_num).attr('class', 'hide materialboxed');
+    //$('#frame-' + to_num).attr('class', 'materialboxed')
 }
 
 // working with cookies
@@ -170,7 +189,8 @@ function change_place(num) {
 
     change_pic(value, num);
 
-    delete_all_empty();
+    //NOT NEEDED
+    //delete_all_empty();
 
     $('#num-frame-mobile').val(num);
     $('#num-frame-desktop').val(num);

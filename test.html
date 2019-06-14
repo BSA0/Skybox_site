@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        function replace(im){
+            //delete im.M_Materialbox; //Hard way
+            //let locim = im;
+            let locim = im.cloneNode(true);
+            locim.id = "frame";
+            $(".material-placeholder").replaceWith(locim);
+            $("#frame").materialbox();
+        }
+
+        $(document).ready(function () {
+            let images = {};
+            let nowI = new Image;
+            let i = 1;
+            console.log("I'm here");
+            nowI.src = "http://localhost:8000/frames/0.jpg";
+            nowI.id = "frame";
+            $("body").append(nowI);
+            console.log("I'm here");
+            for (let i = 0; i < 5; i++) {
+                let im = new Image;
+                im.src = "http://localhost:8000/frames/" + i + ".jpg";
+                images[i] = im;
+            }
+            console.log("I'm here");
+            let img = $("img");
+            img.materialbox();
+            console.log("I'm here");
+            $("#1").click(function () {
+                replace(images[i]);
+                i++;
+                if (i >= 5) {
+                    i = 0;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="1">Click me!</button>
+    <button id="2">Material me!</button>
+</body>
+</html>
