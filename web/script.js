@@ -259,7 +259,7 @@ $(document).ready(function () {
 
     //key listeners
 
-    $('body').keydown(function(eventObject){
+    $('body').keyup(function(eventObject){
         switch (eventObject.which) {
             case 65:
             case 37: change_place(get_place() - 1); break;
