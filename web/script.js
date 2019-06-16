@@ -15,19 +15,9 @@ function load_pic(from_num, to_num) { //load pictures
 
         images[i] = image;
         console.log('loaded ' + i);
-
-        // Old save system
-        /*if (!($('#frame-' + i).attr('src'))){
-            let image = $("<img />").attr('id', 'frame-' + i);
-            image.attr('class', 'hide materialboxed');
-            image.attr('src', 'frames/'+ i +'.jpg');
-            $('#img-holder').append(image);
-            console.log('loaded ' + i);
-            $('#frame-' + i).materialbox();
-        }*/
     }
 
-    $('#title').text(titles[get_place()]);
+
 }
 
 
@@ -35,43 +25,12 @@ function unload_pic(from_num, to_num) {//unload pictures
     for (let i = from_num; i < to_num; i++) {
         delete images[i];
         console.log('unloaded ' + i);
-
-        // Old unload system
-        /*let image = $('#frame-' + i);
-        if ((image.attr('src'))){
-            image.remove();
-            console.log('unloaded ' + i);
-        }*/
     }
 }
 
 
 function unload_all_pic() {
     images = {};
-
-    /*$('*').each(function() {
-        if ($(this).is('img')) {
-            $(this).remove()}
-    });*/
-}
-
-
-function delete_all_empty() {
-    $('.material-placeholder ').each(function () {
-        if ($(this).children().length === 0){
-            $(this).remove()
-        }
-
-    })
-    // Old scary delete function
-    /*$('.material-placeholder ').each(function () {
-        $('div').each(function() {
-            let $this = $(this);
-            if($this.html().replace(/\s|&nbsp;/g, '').length === 0)
-                $this.remove();
-        });
-    })*/
-
 }
 
 
@@ -216,12 +175,9 @@ function change_place(num) {
     save_place(num);
     change_frame_in_url(num);
 
-    /*jQuery.get('/frame_info?frame=' + num, function(data){
+    jQuery.get('/frame_info?frame=' + num, function(data){
         $('#title').text(data['name']);
-    });*/
-    while (!titles[num]){
-        $('#title').text(titles[num]);
-    }
+    });
 
 
     console.log('Changed from ' + value + ' to ' + num);
