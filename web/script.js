@@ -175,9 +175,14 @@ function change_place(num) {
     save_place(num);
     change_frame_in_url(num);
 
-    jQuery.get('/frame_info?frame=' + num, function(data){
-        $('#title').text(data['name']);
-    });
+    if (titles[num]){
+        jQuery.get('/frame_info?frame=' + num, function(data){
+            $('#title').text(data['name']);
+        });
+    } else {
+        $('#title').text(titles[num]);
+    }
+
 
 
     console.log('Changed from ' + value + ' to ' + num);
