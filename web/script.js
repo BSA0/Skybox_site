@@ -175,7 +175,7 @@ function change_place(num) {
     save_place(num);
     change_frame_in_url(num);
 
-    if (titles[num]){
+    if (!titles[num]){
         jQuery.get('/frame_info?frame=' + num, function(data){
             $('#title').text(data['name']);
         });
