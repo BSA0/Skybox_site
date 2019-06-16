@@ -87,8 +87,6 @@ function change_pic(to_num) {
         $('#img-holder').append(img);
         $(".frame").materialbox();
     }
-
-    $('#title').text(titles[to_num]);
     //$('#frame-' + from_num).attr('class', 'hide materialboxed');
     //$('#frame-' + to_num).attr('class', 'materialboxed')
 }
@@ -219,6 +217,8 @@ function change_place(num) {
     /*jQuery.get('/frame_info?frame=' + num, function(data){
         $('#title').text(data['name']);
     });*/
+
+    $('#title').text(titles[num]);
 
     console.log('Changed from ' + value + ' to ' + num);
 }
