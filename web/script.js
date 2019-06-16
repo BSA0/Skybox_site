@@ -26,6 +26,8 @@ function load_pic(from_num, to_num) { //load pictures
             $('#frame-' + i).materialbox();
         }*/
     }
+
+    $('#title').text(titles[get_place()]);
 }
 
 
