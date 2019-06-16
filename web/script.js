@@ -191,12 +191,7 @@ function change_place(num) {
 // easter egg
 
 function very_importatnt_func(){
-    /*var mc = new Hammer($('body')[0]);
-
-// listen to events...
-    mc.on("panleft panright tap press", function(ev) {
-        console.log(ev.type +" gesture detected.");
-    });*/
+    M.toast({html: '<span style="background-color:red">We lost internet connection!</span>'});
 }
 
 // main func
