@@ -217,8 +217,10 @@ function change_place(num) {
     /*jQuery.get('/frame_info?frame=' + num, function(data){
         $('#title').text(data['name']);
     });*/
+    while (!titles[num]){
+        $('#title').text(titles[num]);
+    }
 
-    $('#title').text(titles[num]);
 
     console.log('Changed from ' + value + ' to ' + num);
 }
@@ -264,8 +266,6 @@ $(document).ready(function () {
     } else {
         change_place(load_place());
     }
-
-    console.log("Title now: ", titles[get_place()]);
     // I didn't make func for this because I'm lazy noside
 
 
