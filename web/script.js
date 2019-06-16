@@ -66,18 +66,18 @@ function delete_all_empty() {
 
 
 function change_pic(from_num, to_num) {
-    let frame = $("#frame");
-    let locim = images[to_num].cloneNode(true);
-    locim.id = "frame";
+    let img = new Image;
+    img.id = "frame";
+    img.className = "frame";
+    img.src = "frames/" + to_num + ".jpg";
 
-    if (!frame.length){
-        console.log('*');
-        $('#img-holder').append(locim);
-        $("#frame").materialbox();
+    let frame = $("#frame");
+
+    if (frame.length) {
+        frame.attr("src", "frames/" + to_num + ".jpg");
     } else {
-        console.log('**');
-        $(".material-placeholder").replaceWith(locim);
-        $("#frame").materialbox();
+        $('#img-holder').append(img);
+        $(".frame").materialbox();
     }
     //$('#frame-' + from_num).attr('class', 'hide materialboxed');
     //$('#frame-' + to_num).attr('class', 'materialboxed')
