@@ -264,6 +264,8 @@ $(document).ready(function () {
     } else {
         change_place(load_place());
     }
+
+    $('#title').text(titles[get_place()]);
     // I didn't make func for this because I'm lazy noside
 
 
