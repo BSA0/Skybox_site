@@ -1,10 +1,18 @@
 //working with frames
-let images = {};
+let images = {};// Not really needed, but it's good for debugging
+let titles = {};
 
 function load_pic(from_num, to_num) { //load pictures
     for (let i = from_num; i < to_num; i++) {
         let image = new Image;
         image.src = 'frames/'+ i +'.jpg';
+
+
+        jQuery.get('/frame_info?frame=' + i, function(data){
+            image.setAttribute("title", data['name']);
+            titles[i] = data['name'];
+        });
+
         images[i] = image;
         console.log('loaded ' + i);
 
@@ -65,7 +73,7 @@ function delete_all_empty() {
 }
 
 
-function change_pic(from_num, to_num) {
+function change_pic(to_num) {
     let img = new Image;
     img.id = "frame";
     img.className = "frame";
@@ -79,6 +87,8 @@ function change_pic(from_num, to_num) {
         $('#img-holder').append(img);
         $(".frame").materialbox();
     }
+
+    $('#title').text(titles[to_num]);
     //$('#frame-' + from_num).attr('class', 'hide materialboxed');
     //$('#frame-' + to_num).attr('class', 'materialboxed')
 }
@@ -195,7 +205,7 @@ function change_place(num) {
     load_pic(num, num + 5); //current and next 5
     load_pic(num - 5, num - 1); //previous 5
 
-    change_pic(value, num);
+    change_pic(num);
 
     //NOT NEEDED
     //delete_all_empty();
@@ -206,9 +216,9 @@ function change_place(num) {
     save_place(num);
     change_frame_in_url(num);
 
-    jQuery.get('/frame_info?frame=' + num, function(data){
+    /*jQuery.get('/frame_info?frame=' + num, function(data){
         $('#title').text(data['name']);
-    });
+    });*/
 
     console.log('Changed from ' + value + ' to ' + num);
 }
