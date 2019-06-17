@@ -265,9 +265,9 @@ $(document).ready(function () {
         //Generic swipe handler for all directions
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
             if (direction === "left"){
-                change_place(get_place() - 1);
-            } else if (direction === "right"){
                 change_place(get_place() + 1);
+            } else if (direction === "right"){
+                change_place(get_place() - 1);
             }
         },
         threshold:20
