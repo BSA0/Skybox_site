@@ -192,6 +192,8 @@ function change_place(num) {
 
 function very_importatnt_func(){
     M.toast({html: '<span style="background-color:red">We lost internet connection!</span>'});
+
+
 }
 
 // main func
@@ -259,6 +261,18 @@ $(document).ready(function () {
         set_last();
         change_place(get_last());
         return false;
+    });
+
+    $("#frame").swipe( {
+        //Generic swipe handler for all directions
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+            if (direction === "left"){
+                change_place(get_place() - 1);
+            } else if (direction === "right"){
+                change_place(get_place() + 1);
+            }
+        },
+        threshold:20
     });
 
     mobile.change(function() {
