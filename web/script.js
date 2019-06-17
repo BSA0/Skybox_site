@@ -192,8 +192,6 @@ function change_place(num) {
 
 function very_importatnt_func(){
     M.toast({html: '<span style="background-color:red">We lost internet connection!</span>'});
-
-
 }
 
 // main func
