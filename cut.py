@@ -11,7 +11,7 @@ def main():
     if not os.path.exists(os.path.abspath('frames/')):
         os.mkdir(os.path.abspath('frames/'))
 
-    now_pages = 305
+    now_pages = 309
 
     for i in range(2, now_pages + 1):
         url = 'http://skyboxcomic.com/'
@@ -21,7 +21,7 @@ def main():
 
         if not os.path.exists(path):  # don't download if we have already page
             url_r = requests.get(url_comics + str(i))
-            bs = BeautifulSoup(url_r.content)
+            bs = BeautifulSoup(url_r.content, features="lxml")
             print('Downloading:', i, url + bs.find_all('img', {'id': 'comicimage'})[0]['src'])  # human readable
             r = requests.get(url + bs.find_all('img', {'id': 'comicimage'})[0]['src'], stream=True)  # get file stream
             with open(path, 'wb') as f:  # copy paste from stackoverflow, download file
