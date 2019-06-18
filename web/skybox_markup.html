@@ -54,8 +54,29 @@
                 <div class="col s12 m10 l8 offset-l2 offset-m1">
                     <div class="card">
                         <div class="card-content">
-                            <span id="title" class="card-title  text-darken-4 center">If you see that, you have slow internet or you caught a bug</span>
-                        
+                            <div id="title_test" class="row card-title text-darken-4">
+                                <div class="input-field col s4 m3 no-top-margin">
+                                    <input value="300" id="comic_num" type="number" class="center-align">
+                                    <label for="comic_num">Comic (of 314):</label>
+                                </div>
+                                <div class="input-field col s8 m6 l4 no-top-margin">
+                                    <select>    
+                                        <option value="1">Arc 1 - Ascention</option>
+                                        <option value="2">Arc 2 - rest</option>
+                                        <option value="3">Arc 3 - test</option>
+                                    </select>  
+                                    <label>Arc:</label> 
+                                </div>
+                                <div class="input-field col s4 m3 no-top-margin">
+                                    <input value="11" id="page_num" type="number" class="center-align">
+                                    <label for="page_num">Page (of 70):</label>
+                                </div>
+                                <div class="input-field col s4 m3 no-top-margin">
+                                    <input value="11" id="frame_num" type="number" class="center-align">
+                                    <label for="frame_num">Frame (of 21):</label>
+                                </div>
+                            </div>
+            
                             <div class="card-image">
                                 <input id="num-frame" class="hide">
                                 <input id="last-frame" class="hide">
@@ -114,12 +135,28 @@
 
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">Preferences<i class="material-icons right">close</i></span>
-                            <p>Here is some more information about this</p>
                             <form action="#">
-                                <label>
-                                    <input id="cookie-allow" type="checkbox" class="checkbox-blue" />
-                                    <span>Save my place on exit</span>
-                                </label>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <p>Here is some more information about this</p>
+                                        <label>
+                                            <input id="cookie-allow" type="checkbox" class="checkbox-blue" />
+                                            <span>Save my place on exit</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="row">
+                                    <div class="col s6">
+                                            <p>Here is some more information about this</p>
+                                    </div>
+                                    <div class="col s6">
+                                        <div class="input-field">
+                                            <input value="11" id="preload_count" type="number" class="center-align">
+                                            <label for="preload_count">How many pages preload:</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>

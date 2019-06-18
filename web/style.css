@@ -24,10 +24,6 @@ main {
     margin: 0;
 }
 
-.dropdown-content{
-    max-width: 58 !important;
-}
-
 .img-placeholder-box{
     width:100%; 
     height:0; 
@@ -65,6 +61,18 @@ div#materialbox-overlay { background-color: #000000e6 !important; }
     box-shadow: 0 1px 0 0 #03a9f4 !important;
 }
 
+.input-field input[type=number]:focus + label {
+    color: #03a9f4 !important;
+}
+
 .materialboxed:hover:not(.active) {
     opacity: 1 !important;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #03a9f4 !important;
+}
+
+.select-wrapper input.select-dropdown:focus {
+    border-bottom: 1px solid #03a9f4 !important;
 }
